@@ -1,0 +1,12 @@
+#!/bin/sh
+
+chmod a+x egoboo load940 stop940
+sync
+#./cpu_speed.gpe --upll --timing 1 --cpuclk 266 --trc 6 --tras 4 --twr 1 --tmrd 1 --trfc 1 --trp 2 --trcd 2
+./load940 gpu940
+#If you encounter strange crashes after a little while, try this instead :
+#./load940 gpu940_225
+sleep 1
+./egoboo >/dev/null 2>&1
+./stop940
+cd /usr/gp2x; ./gp2xmenu
