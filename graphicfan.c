@@ -88,6 +88,7 @@ void render_fan(unsigned int fan)
 		for (tnc = 0; tnc < meshcommandsize[type][cnt]; tnc++)
 		{
 			vertex = meshcommandvrt[type][entry];
+			glColor3fv( &v[vertex].r );
 			glTexCoord2f ( meshcommandu[type][vertex]+offu, meshcommandv[type][vertex]+offv);
 			glVertex3fv ( &v[vertex].x );
 			entry++;

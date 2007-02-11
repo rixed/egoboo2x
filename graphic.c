@@ -3599,7 +3599,7 @@ int glinit(int argc, char **argv)
 
 	glEnable(GL_COLOR_MATERIAL);	// Need this for color + lighting
 	EnableTexturing();		// Enable texture mapping
-	glShadeModel( GL_FLAT );//RXD SMOOTH );
+	glShadeModel( GL_SMOOTH );
 
 	Reshape3D( scrx, scry );
 

@@ -340,10 +340,10 @@ EXTERN int rotmeshdown;                                    //
 // Multi cam
 #define MINZOOM                         500        // Camera distance
 #define MAXZOOM                         600         //
-#define MINZADD                         800         // Camera height
-#define MAXZADD                         1500  //1000        //
+#define MINZADD                         700//800         // Camera height
+#define MAXZADD                         1400  //1000        //
 #define MINUPDOWN                       (.24*PI)    // Camera updown angle
-#define MAXUPDOWN                       (.15*PI) // (.18*PI)    //
+#define MAXUPDOWN                       (.16*PI) // (.18*PI)    //
 
 
 #define MD2START                        0x32504449  // MD2 files start with these four bytes
