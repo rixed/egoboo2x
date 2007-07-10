@@ -131,6 +131,7 @@ prog:
 ----------------*/
 void EgobooSoundMixCallback( void *userdata, Uint8 *stream, int len)
 {
+	(void)userdata;
 	Uint32	lCompt;
 	Uint32	lSizeToMix;
 
@@ -265,6 +266,7 @@ prog:
 ----------------*/
 void play_sound_pvf(int index, int pan, int volume, int frequency)
 {
+	(void)frequency;
     // ZZ> This function starts playing a sound
 	Sint32	lFreeChannel;
 	float	lCalcVolume;
@@ -324,6 +326,8 @@ for now, only volume count and panning is simulated
 //------------------------------------------------------------------------------
 void play_sound_skip(int index, int skip)
 {
+	(void)index;
+	(void)skip;
     // ZZ> This function starts playing a sound with padding
 /*PORT
     if(index < numsound && index >= 0 && soundon)
@@ -341,6 +345,10 @@ void play_sound_skip(int index, int skip)
 //------------------------------------------------------------------------------
 void play_sound_pvf_looped(int index, int pan, int volume, int frequency)
 {
+	(void)index;
+	(void)pan;
+	(void)volume;
+	(void)frequency;
     // ZZ> This function starts playing a looped sound
 /* PORT
     if(index < numsound && index >= 0 && soundon)
@@ -372,7 +380,7 @@ void stop_sound(int index)
 		return;
 	}
 	SDL_LockAudio(); 
-	for ( lCheckChan = 0; lCheckChan < MAX_SDL_MIXING_SOUND; lCheckChan++ )
+	for ( lCheckChan = 0; lCheckChan < gNumChannelToMix/*MAX_SDL_MIXING_SOUND*/; lCheckChan++ )
 	{
 		if ( gSDLSoundChannelList[lCheckChan].m_Active )
 		{
@@ -420,11 +428,17 @@ void StopAllSoundChannel( void )
 	{
 		return;
 	}
+	printf("gona LockAudio\n");
+glBindTexture(GL_TEXTURE_2D, 0);
 	SDL_LockAudio(); 
-	for ( lCompt = 0; lCompt < MAX_SDL_MIXING_SOUND; lCompt++ )
+	printf("gona Set some False\n");
+glBindTexture(GL_TEXTURE_2D, 0);
+	for ( lCompt = 0; lCompt < gNumChannelToMix/*MAX_SDL_MIXING_SOUND*/; lCompt++ )
 	{
 		gSDLSoundChannelList[lCompt].m_Active = FALSE;
 	}
+	printf("gona UnLockAudio\n");
+glBindTexture(GL_TEXTURE_2D, 0);
 	SDL_UnlockAudio();
 }
 
@@ -483,7 +497,7 @@ prog:
 ----------------*/
 void RemoveSound( Uint32 index )
 {
-	if ( gSoundOn == FALSE || index < 0 || index >= MAX_SDL_SOUND )
+	if ( gSoundOn == FALSE || index >= MAX_SDL_SOUND )
 	{
 		return;
 	}
@@ -518,11 +532,17 @@ void reset_sounds()
 	{
 		return;
 	}
+	printf("gona StopAllSoundChannel\n");
+glBindTexture(GL_TEXTURE_2D, 0);
 	StopAllSoundChannel();
+	printf("gona RemoveSound\n");
+glBindTexture(GL_TEXTURE_2D, 0);
 	for ( lCompt = 0; lCompt < MAX_SDL_SOUND; lCompt++ )
 	{
 		RemoveSound( lCompt );
 	}
+	printf("gona return\n");
+glBindTexture(GL_TEXTURE_2D, 0);
 /*PORT
     int cnt = 0;
     if(numsound == 0)
@@ -925,6 +945,7 @@ void check_ig_music()
 //------------------------------------------------------------------------------
 void load_all_music_tracks(char *modname)
 {
+	(void)modname;
     // ZZ> This function loads the music track file
 /*PORT
     char loadname[128];
@@ -978,6 +999,7 @@ void load_all_music_tracks(char *modname)
 //------------------------------------------------------------------------------
 void load_music_sequence(char *modname)
 {
+	(void)modname;
     // ZZ> This function loads the music sequence file
 /*PORT
     char loadname[128];
@@ -1008,6 +1030,7 @@ void load_music_sequence(char *modname)
 //------------------------------------------------------------------------------
 void load_all_music_loops(char *modname)
 {
+	(void)modname;
     // ZZ> This function loads the music loop file and begins playing
 /*PORT
     char loadname[128];
@@ -1041,6 +1064,7 @@ void load_all_music_loops(char *modname)
 //---------------------------------------------------------------------------------------------
 void start_music_track(int track)
 {
+	(void)track;
     // ZZ> This function starts playing a new track
 /*PORT
     if(track < numtrack && musicvalid)
@@ -1079,6 +1103,7 @@ void stop_music()
 //---------------------------------------------------------------------------------------------
 void change_music_track(int track)
 {
+	(void)track;
     // ZZ> This function starts a new track, but at the same time as the old one
     //     so we don't miss a beat
 /*PORT
