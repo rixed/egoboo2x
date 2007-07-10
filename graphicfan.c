@@ -168,8 +168,8 @@ void render_water_fan(unsigned int fan, unsigned char layer, unsigned char mode)
 		for (tnc = 0; tnc < meshcommandsize[type][cnt]; tnc++)
 		{
 			vertex = meshcommandvrt[type][entry];
-//			glColor4fv( &v[vertex].r );
-			glColor4x( 0, 0, 0, 0x7000 );
+			glColor4fv( &v[vertex].r );
+//			glColor4x( 0, 0, 0, 0x7000 );
 			glTexCoord2fv ( &v[vertex].s );
 			glVertex3fv ( &v[vertex].x );
 			entry++;

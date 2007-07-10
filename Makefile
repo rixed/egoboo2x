@@ -22,14 +22,15 @@ SRC	= camera.c	\
 GPUDIR = /home/rixed/src/gpu940
 OBJS    = $(SRC:.c=.o)
 NAME	= egoboo
-CFLAGS += -W -Wall -D_LINUX -D_LITTLE_ENDIAN -ffast-math -funroll-loops -D_REENTRANT
-CFLAGS += -mcpu=arm920t -msoft-float 
-LIBS	= -lGL -lgpu940 -lm -lSDL -lpthread
+CFLAGS += -W -Wall -D_LINUX -D_LITTLE_ENDIAN -ffast-math
+CFLAGS += $(shell sdl-config --cflags)
+LIBS = -lGL -lgpu940
+LIBS += $(shell $(GP2XDEVDIR)/bin/sdl-config --static-libs) -static
+#LIBS += $(shell sdl-config --libs)
 INCDIR = -I$(GPUDIR)/include
-INCDIR	= -I$(GP2XDEVDIR)/arm-gp2x-linux/include -I$(GPUDIR)/include
-INCDIR	= -I$(GP2XDEVDIR)/include -I$(GPUDIR)/include
-LIBDIR	= -static -L$(GPUDIR)/GL/.libs -L$(GPUDIR)/lib/.libs
-#-L$(GP2XDEVDIR)/lib
+INCDIR += -I$(GP2XDEVDIR)/include
+LIBDIR = -L$(GPUDIR)/GL/.libs -L$(GPUDIR)/lib/.libs
+LIBDIR += -L$(GP2XDEVDIR)/lib
 
 all: $(NAME)
 
@@ -43,8 +44,8 @@ clean:
 	rm -f $(NAME) *.o *~ depends.mak
 
 put: $(NAME)
-	$(GP2XDEVDIR)/bin/gp2x-strip egoboo
-	ncftpput -u root -p root gp2x /mnt/sd/test/egoboo egoboo
+#	$(GP2XDEVDIR)/bin/gp2x-strip egoboo
+	ncftpput -u root -p root gp2x /mnt/sd/egoboo2x egoboo
 
 cscope:
 	cscope -Rb *.c *.h

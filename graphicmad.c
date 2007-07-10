@@ -27,7 +27,7 @@ void render_texmad(unsigned short character, unsigned char trans)
 	unsigned char lightrotation = 
 		(chrturnleftright[character]+chrlightturnleftright[character])>>8;
 	unsigned char lightlevel = chrlightlevel[character]>>4;
-	DWORD alpha = 120;//trans<<24;
+	DWORD alpha = 90;//120;//trans<<24;
 	unsigned char spek = chrsheen[character];
 
 	float uoffset = textureoffset[chruoffset[character]>>8];
