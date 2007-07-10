@@ -1324,6 +1324,7 @@ void load_map(char* szModule, int sysmem)
 {
 	// ZZ> This function loads the map bitmap and the blip bitmap
 	char szMap[256];
+	(void)sysmem;
 
 	// Turn it all off
 	mapon = FALSE;
@@ -1349,6 +1350,7 @@ void load_font(char* szBitmap, char* szSpacing, int sysmem)
 {
 	// ZZ> This function loads the font bitmap and sets up the coordinates
 	//     of each font on that bitmap...  Bitmap must have 16x6 fonts
+	(void)sysmem;
 	int cnt, i, x, y, xsize, ysize, xdiv, ydiv;
 	int xstt, ystt;
 	int xspacing, yspacing;
@@ -2364,7 +2366,7 @@ void draw_blip(unsigned char color, int x, int y)
 		yt = ((float)bliprect[color].top)/4;
 		yb = ((float)bliprect[color].bottom)/4;
 		width = (bliprect[color].right-bliprect[color].left)/2; height=(bliprect[color].bottom-bliprect[color].top)/2;
-
+		
 		glBegin(GL_QUADS);
 		glTexCoord2f( xl, yb );   glVertex2i( x-1,       scry-y-1-height );
 		glTexCoord2f( xr, yb );   glVertex2i( x-1+width, scry-y-1-height );
@@ -3007,6 +3009,11 @@ void draw_scene()
 //--------------------------------------------------------------------------------------------
 void build_select(float tlx, float tly, float brx, float bry, unsigned char team)
 {
+	(void)tlx;
+	(void)tly;
+	(void)brx;
+	(void)bry;
+	(void)team;
 	// ZZ> This function checks which characters are in the selection rectangle
 	/*PORT
 	  D3DLVERTEX v[MAXPRT];
@@ -3075,6 +3082,11 @@ void build_select(float tlx, float tly, float brx, float bry, unsigned char team
 //--------------------------------------------------------------------------------------------
 unsigned short build_select_target(float tlx, float tly, float brx, float bry, unsigned char team)
 {
+	(void)tlx;
+	(void)tly;
+	(void)brx;
+	(void)bry;
+	(void)team;
 	// ZZ> This function checks which characters are in the selection rectangle,
 	//     and returns the first one found
 	/*PORT
@@ -3575,6 +3587,8 @@ void Reshape3D( int w, int h )
 
 int glinit(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
 	//	GLfloat intensity[] = {1.0,1.0,1.0,1.0};
 
 	if (GL_TRUE != glOpen(DEPTH_BUFFER)) {

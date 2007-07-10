@@ -436,7 +436,7 @@ void goto_colon(FILE* fileread)
 {
 	// ZZ> This function moves a file read pointer to the next colon
 	//    char cTmp;
-	unsigned int ch = fgetc(fileread);
+	int ch = fgetc(fileread);
 
 	//    fscanf(fileread, "%c", &cTmp);
 	while(ch != ':')
